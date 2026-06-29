@@ -1,11 +1,11 @@
 ## AWS Custom Setup ##
 
-Just some helper files and resources.  To help setup the accounts akin to the ones with best-practices that I've had the privilege to learn from workplaces.
+Just some helper files and resources to make life easier in an AWS account.  To help setup the accounts akin to the ones with best-practices that I've had the privilege to learn from workplaces.  Removes toil.
 
 ### IAM ###
-* ``gh-cdk-perms-boundary.yaml`` - opens up and controls some AWS resources for IAM manipulation.  Controlling costs.
+#### Policies ####
 
-* ``trust-relatipnships.json`` - When bootstrapping a Region or a new Region, some of the default IAM Roles' Trust Relationships need modifying.  This will allow for easier ops with GitHub Actions.  For now, this is just a copied template.  Add the bits that are missing/tailor to your account number.  At the time of writing, could not find a Cloudformation parameter to enter this.
+* ``bootstrap-cdk-trust-relatipnships.json`` - When bootstrapping a Region or a new Region, some of the default IAM Roles' Trust Relationships need modifying.  This will allow for easier ops with GitHub Actions.  For now, this is just a copied template.  Add the bits that are missing/tailor to your account number.  At the time of writing, could not find a Cloudformation parameter to enter this.
 
 Needs applying to following IAM Roles (they are part of the bootstrap stack, CDKToolkit):
 * cdk-hnb659fds-cfn-deploy-role-{Account_ID}-{Region}
@@ -16,7 +16,17 @@ Needs applying to following IAM Roles (they are part of the bootstrap stack, CDK
 
 This needs to be repeated per Region of intended use.
 
+* ``gh-cdk-perms-boundary.yaml`` - opens up and controls some AWS resources for IAM manipulation.  Controlling costs.
+Add to your github-cdk role when created.
+
+* ``gh-cdk-trust-relationship.json`` - This allows GitHub Actions pipelines to run when the specified branch (currently ```main```) is pushed/targetted.  Alter your github-cdk role when created.
+
 * ``AllBillingAndCostAccess.yaml`` - By default, child accounts (under root) are limited to Billing and Cost-related resources/tools.  This allows easier admin within the child account.  Assign to your IAM User once deployed.
+
+
+#### Roles ####
+* ```github-cdk.yaml``` - Used to perform operations in GitHub Actions pipelines.
+
 
 Remember, where applicable: \
 ```aws cloudformation deploy --template-file /path_to_template/template.json --stack-name my-new-stack --region```
