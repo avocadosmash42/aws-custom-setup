@@ -1,0 +1,22 @@
+---
+AWSTemplateFormatVersion: 2010-09-09
+
+Description: By default, child accounts (under root) are limited to Billing and Cost-related resources/tools.  This allows easier admin within the child account.
+
+
+Type: 'AWS::IAM::Policy'
+Properties:
+  PolicyName: AllowAllBillingAndCostAccess
+  PolicyDocument:
+    Version: "2012-10-17"
+    Statement:
+      - Effect: Allow
+        Action:
+          - 'aws-portal:*'
+          - 'billing:*'
+          - 'budgets:*'
+          - 'ce:*'
+          - 'cur:*'
+          - 'purchase-orders:*'
+          - 'savingsplans:*'
+        Resource: '*'
