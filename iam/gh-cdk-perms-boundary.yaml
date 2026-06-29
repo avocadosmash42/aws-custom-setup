@@ -1,0 +1,22 @@
+---
+AWSTemplateFormatVersion: 2010-09-09
+
+Description: limit and allow use of popularly-used AWS resources.
+
+
+Type: 'AWS::IAM::Policy'
+Properties:
+  PolicyName: github-cdk-perms-boundary
+  PolicyDocument:
+    Version: "2012-10-17"
+    Statement:
+      - Effect: Allow
+        Action:
+          - 'apigateway:*'
+          - 'cloudformation:*'
+          - 'cloudwatch:*'
+          - 'ec2:*'
+          - 'lambda:*'
+          - 'logs:*'
+          - 's3:*'
+        Resource: '*'
