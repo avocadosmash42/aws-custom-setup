@@ -5,7 +5,7 @@ Just some helper files and resources.  To help setup the accounts akin to the on
 ### IAM ###
 * ``gh-cdk-perms-boundary.yaml`` - opens up and controls some AWS resources for IAM manipulation.  Controlling costs.
 
-* ``trust-relatipnships.json`` - When bootstrapping a Region or a new Region, some of the default IAM Roles need their Trust Relationship need modifying.  This will allow for easier ops with GitHub Actions.  For now, this is just a copied template.  Add the bits that are missing/tailor to your account number.  At the time of writing, could not find a Cloudformation parameter to enter this.
+* ``trust-relatipnships.json`` - When bootstrapping a Region or a new Region, some of the default IAM Roles' Trust Relationships need modifying.  This will allow for easier ops with GitHub Actions.  For now, this is just a copied template.  Add the bits that are missing/tailor to your account number.  At the time of writing, could not find a Cloudformation parameter to enter this.
 
 Needs applying to:
 * cdk-hnb659fds-cfn-deploy-role-{Account_ID}-{Region}
